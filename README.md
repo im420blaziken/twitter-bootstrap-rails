@@ -1,4 +1,4 @@
-# Twitter Bootstrap for Rails 4 Asset Pipeline
+# Twitter Bootstrap 4 for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 4 Asset Pipeline (Rails 3.1 and Rails 3.2 supported)
@@ -57,7 +57,7 @@ gem "twitter-bootstrap-rails"
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git'
 ```
 
 Then run `bundle install` from the command line:
