@@ -1,7 +1,7 @@
-@fontAwesomeEotPath: "<%= asset_path 'fontawesome-webfont.eot?v=3.0.2' %>";
-@fontAwesomeEotPath_iefix: "<%= asset_path 'fontawesome-webfont.eot?#iefix&v=3.0.2' %>";
-@fontAwesomeWoffPath: "<%= asset_path 'fontawesome-webfont.woff?v=3.0.2' %>";
-@fontAwesomeTtfPath: "<%= asset_path 'fontawesome-webfont.ttf?v=3.0.2' %>";
-// Font Awesome
-@import "fontawesome";
-@import "fontawesome-ie7";
+// The ERB code is not executed upon compilation. It's intended to be executed by the asset pipeline of the consumer app.
+@font-awesome-eot-path: url("<%= asset_path 'fontawesome-webfont.eot' %>");
+@font-awesome-eot-path-iefix: url("<%= asset_path 'fontawesome-webfont.eot?#iefix' %>");
+@font-awesome-woff-path: url("<%= asset_path 'fontawesome-webfont.woff' %>");
+@font-awesome-ttf-path: url("<%= asset_path 'fontawesome-webfont.ttf' %>");
+@font-awesome-svg-path: url("<%= asset_path 'fontawesome-webfont.svg#fontawesomeregular' %>");
+@import "fontawesome/font-awesome";
