@@ -1,7 +1,7 @@
-# Twitter Bootstrap for Rails 3.1 Asset Pipeline
+# Twitter Bootstrap for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
+twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 4 Asset Pipeline (Rails 3.1 and Rails 3.2 supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
@@ -50,7 +50,7 @@ Include these lines in the Gemfile to install the gems from [RubyGems.org](http:
 
 ```ruby
 gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "less-rails" #Sprockets (what Rails 4 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 ```
 
@@ -66,7 +66,7 @@ Then run `bundle install` from the command line:
 
 Then run the bootstrap generator to add Bootstrap includes into your assets:
 
-    rails generate bootstrap:install less
+    rails g bootstrap:install less
 
 ### Installing the CSS stylesheets
 
@@ -78,7 +78,7 @@ gem "twitter-bootstrap-rails"
 
 After running `bundle install`, run the generator:
 
-    rails generate bootstrap:install static
+    rails g bootstrap:install static
 
 ## Generating layouts and views
 
@@ -118,7 +118,7 @@ Usage:
 Example:
 
 
-    rails g scaffold Post title:string description:text
+    rails g scaffold Post title:string description:text --no-stylesheets
     rake db:migrate
     rails g bootstrap:themed Posts
 
@@ -143,31 +143,53 @@ You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your ap
 To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:
 
 ```css
-@import "twitter/bootstrap/reset.less";
-@import "twitter/bootstrap/variables.less";
-@import "twitter/bootstrap/mixins.less";
-@import "twitter/bootstrap/scaffolding.less";
-@import "twitter/bootstrap/grid.less";
-@import "twitter/bootstrap/layouts.less";
-@import "twitter/bootstrap/type.less";
-@import "twitter/bootstrap/forms.less";
-@import "twitter/bootstrap/wells.less";
-@import "twitter/bootstrap/component-animations.less";
-@import "twitter/bootstrap/buttons.less";
-@import "twitter/bootstrap/close.less";
-@import "twitter/bootstrap/navs.less";
-@import "twitter/bootstrap/navbar.less";
-@import "twitter/bootstrap/labels-badges.less";
-@import "twitter/bootstrap/hero-unit.less";
-@import "twitter/bootstrap/utilities.less";
-@import "twitter/bootstrap/responsive";
+// Core variables and mixins
+@import "twbs/bootstrap/variables.less";
+@import "twbs/bootstrap/mixins.less";
+
+// Reset
+@import "twbs/bootstrap/normalize.less";
+
+// Core CSS
+@import "twbs/bootstrap/scaffolding.less";
+@import "twbs/bootstrap/type.less";
+@import "twbs/bootstrap/code.less";
+@import "twbs/bootstrap/grid.less";
+
+@import "twbs/bootstrap/tables.less";
+@import "twbs/bootstrap/forms.less";
+@import "twbs/bootstrap/buttons.less";
+
+// Components: common
+@import "twbs/bootstrap/input-groups.less";
+@import "twbs/bootstrap/dropdowns.less";
+@import "twbs/bootstrap/close.less";
+
+// Components: Nav
+@import "twbs/bootstrap/navs.less";
+@import "twbs/bootstrap/navbar.less";
+
+// Components: Popovers
+@import "twbs/bootstrap/modals.less";
+@import "twbs/bootstrap/tooltip.less";
+
+// Components: Misc
+@import "twbs/bootstrap/alerts.less";
+@import "twbs/bootstrap/progress-bars.less";
+@import "twbs/bootstrap/accordion.less";
+@import "twbs/bootstrap/carousel.less";
+@import "twbs/bootstrap/jumbotron.less";
+
+// Utility classes
+@import "twbs/bootstrap/utilities.less"; // Has to be last to override when necessary
+@import "twbs/bootstrap/responsive-utilities.less";
 ```
 
 If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
 ```css
-@linkColor: #ff0000;
+@brand-primary: #ff0000;
 ```
 ### SASS
 
@@ -187,10 +209,11 @@ By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesom
 If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
 
 ```css
-// Font Awesome
-// @import "fontawesome";
-// Glyphicons
-@import "twitter/bootstrap/sprites.less";
+/* Font Awesome (default - comment to disable) */
+//@import "fontawesome/font-awesome";
+
+/* Glyphicons */
+@import "twbs/bootstrap-glyphicons/bootstrap-glyphicons";
 ```
 
 ## Using Javascripts
@@ -198,7 +221,7 @@ If you would like to restore the default Glyphicons, inside the _bootstrap_and_o
 Require Bootstrap JS (bootstrap.js) in your application.js
 
 ```js
-//= require twitter/bootstrap
+//= require twbs/bootstrap
 
 $(function(){
   /* Your javascripts goes here... */
@@ -208,13 +231,13 @@ $(function(){
 If you want to customize what is loaded, your application.js would look something like this
 
 ```js
-#= require jquery
-#= require jquery_ujs
-#= require twitter/bootstrap/bootstrap-transition
-#= require twitter/bootstrap/bootstrap-alert
-#= require twitter/bootstrap/bootstrap-modal
-#= require twitter/bootstrap/bootstrap-button
-#= require twitter/bootstrap/bootstrap-collapse
+//= require jquery
+//= require jquery_ujs
+//= require twbs/bootstrap/bootstrap-transition
+//= require twbs/bootstrap/bootstrap-alert
+//= require twbs/bootstrap/bootstrap-modal
+//= require twbs/bootstrap/bootstrap-button
+//= require twbs/bootstrap/bootstrap-collapse
 ```
 
 ...and so on for each bootstrap js component.
@@ -227,9 +250,12 @@ to /app/assets/javascripts/ folder.
 
 ```coffee
 jQuery ->
-  $("a[rel=popover]").popover()
-  $(".tooltip").tooltip()
-  $("a[rel=tooltip]").tooltip()
+  # For performance reasons, the Tooltip and Popover data-apis are opt in.
+  # Uncomment the following line to enable tooltips
+  # $("[data-toggle='tooltip']").tooltip()
+
+  # Uncomment the following line to enable popovers
+  # $("[data-toggle='popover']").popover()
 ```
 
 ## Using Helpers

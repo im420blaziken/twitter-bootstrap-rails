@@ -1,5 +1,5 @@
 $:.push File.expand_path("../lib", __FILE__)
-require "twitter/bootstrap/rails/version"
+require "twbs/bootstrap/rails/version"
 
 Gem::Specification.new do |s|
   s.name        = "twitter-bootstrap-rails"
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'execjs'
   s.add_runtime_dependency 'rails', '>= 3.1'
   s.add_development_dependency 'less'
-  s.add_development_dependency 'therubyracer', '0.11.1'
+  s.add_development_dependency 'therubyracer'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
   s.post_install_message = "Important: You may need to add a javascript runtime to your Gemfile in order for bootstrap's LESS files to compile to CSS. \n\n" \

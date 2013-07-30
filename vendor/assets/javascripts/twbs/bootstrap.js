@@ -1,0 +1,12 @@
+//= require twbs/bootstrap/transition
+//= require twbs/bootstrap/alert
+//= require twbs/bootstrap/button
+//= require twbs/bootstrap/carousel
+//= require twbs/bootstrap/collapse
+//= require twbs/bootstrap/dropdown
+//= require twbs/bootstrap/modal
+//= require twbs/bootstrap/tooltip
+//= require twbs/bootstrap/popover
+//= require twbs/bootstrap/scrollspy
+//= require twbs/bootstrap/tab
+//= require twbs/bootstrap/affix
