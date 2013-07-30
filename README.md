@@ -1,37 +1,9 @@
+#### This is a fork of github.com/syhunak/twitter-bootstrap-rails
+
 # Twitter Bootstrap 3 for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 4 Asset Pipeline (Rails 3.1 and Rails 3.2 supported)
-
-[![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
-[![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
-
-[gem]: https://rubygems.org/gems/twitter-bootstrap-rails
-[travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
-[gemnasium]: https://gemnasium.com/seyhunak/twitter-bootstrap-rails
-[codeclimate]: https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails
-[coveralls]: https://coveralls.io/r/seyhunak/twitter-bootstrap-rails
-
-## Screencasts
-#### Installing twitter-bootstrap-rails, generators, usage and more
-<img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img>
-
-Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
-
-[Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
-in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
-
-[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
-(Note: This episode is pro episode)
-
-
-## Example Application
-An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
-
 
 ## Installing the Gem
 
@@ -46,18 +18,20 @@ Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windo
 
 To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [Javascript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
 
-Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
+Modify these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
 
 ```ruby
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 4 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+# We want to disable sass, by commenting it out, since we're using less.
+# gem 'sass-rails'
+gem 'therubyracer' # Add this if missing
+gem 'less-rails' # Add this - Sprockets (what Rails 4 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git' # Add this
 ```
 
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git', :branch => 'bootstrap-3.0.0'
 ```
 
 Then run `bundle install` from the command line:
@@ -68,63 +42,45 @@ Then run the bootstrap generator to add Bootstrap includes into your assets:
 
     rails g bootstrap:install less
 
-### Installing the CSS stylesheets
+To update the gem when new builds are pushed, run `bundle update` from the command line:
 
-If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
-
-```ruby
-gem "twitter-bootstrap-rails"
-```
-
-After running `bundle install`, run the generator:
-
-    rails g bootstrap:install static
+    bundle update
 
 ## Generating layouts and views
 
 You can run following generators to get started with Twitter Bootstrap quickly.
 
-
-Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
-
+###Layout  
+Generates Twitter Bootstrap compatible layout. *Haml and Slim supported*  
 
 Usage:
-
 
     rails g bootstrap:layout [LAYOUT_NAME] [*fixed or fluid]
 
-
 Example of a fixed layout:
-
 
     rails g bootstrap:layout application fixed
 
-
 Example of a responsive layout:
-
 
     rails g bootstrap:layout application fluid
 
-
-Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
-
+###Themed  
+Generates Twitter Bootstrap compatible scaffold views. *Haml and Slim supported*  
 
 Usage:
 
-
     rails g bootstrap:themed [RESOURCE_NAME]
 
-
 Example:
-
 
     rails g scaffold Post title:string description:text --no-stylesheets
     rake db:migrate
     rails g bootstrap:themed Posts
 
-Notice the plural usage of the resource to generate bootstrap:themed.
+**Note the plural usage of the resource to generate bootstrap:themed.**  
 
-## Using with Less
+## Using Less
 
 Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less, a CSS preprocessor for faster and easier web development.
 
@@ -189,19 +145,9 @@ If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
 ```css
-@brand-primary: #ff0000;
+@navbar-brand-color: #ff0000;
+@navbar-brand-hover-color: #00ff00;
 ```
-### SASS
-
-If you are using SASS to compile your application.css (e.g. your manifest file is application.css.sass or application.css.scss) you may get this:
-
-```
-Invalid CSS after "*": expected "{", was "= require twitt..."
-(in app/assets/stylesheets/application.css)
-(sass)
-```
-
-If this is the case, you **must** use @import instead of `*=` in your manifest file, or don't compile your manifest with SASS.
 
 ### Icons
 
@@ -576,127 +522,42 @@ end
 ###i18n Internationalization Support
 The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
 
-
 NOTE: If you are using Devise in your project, you must have a devise locale file
 for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n
 
 ## Changelog
 <ul>
-  <li>Version 0.0.5 deprecated</li>
-  <li>Asset files updated to latest and removed version numbers</li>
-  <li>Implemented Less::Rails Railtie to use with LESS</li>
-  <li>Fixed railtie to only initialize Less when installed</li>
-  <li>New branch for the static version of Bootstrap (w/o Less) - check static branch</li>
-  <li>Added path to support heroku deploy</li>
-  <li>Rake precompile issue fixed</li>
-  <li>Updated asset files to 1.4.0</li>
-  <li>Updated dependency less-rails (now requires 2.1.0)</li>
-  <li>Added generators</li>
-  <li>Fixed generators</li>
-  <li>Fixed class name conflicts from (bootstrap.js.coffee)</li>
-  <li>Fixed jquery-rails gem version dependency</li>
-  <li>Updated asset files</li>
-  <li>Added new generators (install, layout and themed)</li>
-  <li>Compability to Rails 3.2</li>
-  <li>Transitioning to 2.0</li>
-  <li>Released gem v.2.0rc0</li>
-  <li>Added Haml and Slim support</li>
-  <li>Added Responsive layout support</li>
-  <li>Fixes and release 2.0.0</li>
-  <li>Updated to v2.0.1, versioned v2.0.1.0</li>
-  <li>Released gem v.2.0.3</li>
-  <li>Released gem v.2.0.4</li>
-  <li>Released gem v.2.0.5</li>
-  <li>Added SimpleForm support</li>
-  <li>Added FontAwesome support</li>
-  <li>Released gem v.2.0.6</li>
-  <li>Released gem v.2.0.7</li>
-  <li>Released gem v.2.0.8</li>
-  <li>Released gem v.2.0.9 (Bootstrap 2.0.4 and FontAwesome 2.0 support)</li>
-  <li>Released gem v.2.1.0 (JRuby support)</li>
-  <li>Released gem v.2.1.1 (minor fixes)</li>
-  <li>Flash block message helper added</li>
-  <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
-  <li>Released gem v.2.1.3 (minor fixes and updated to Twitter Bootstrap 2.1.1)</li>
-  <li>Released gem v.2.1.4 (minor fixes)</li>
-  <li>Released gem v.2.1.5 (minor fixes, install generator detects javascript template engine, updated to Twitter Bootstrap 2.2.1)</li>
-  <li>Released gem v.2.1.6 (minor fixes)</li>
-  <li>Added static stylesheets support</li>
-  <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
-  <li>Released gem v.2.1.9</li>
-  <li>Released gem v.2.2.0 (Font Awesome 3)</li>
-  <li>Released gem v.2.2.1 (minor fixes and updates)</li>
-  <li>Released gem v.2.2.2 (Bootstrap 2.3.0)</li>
-  <li>Released gem v.2.2.3 (Minor fixes)</li>
-  <li>Released gem v.2.2.4 (Minor fixes)</li>
-  <li>Released gem v.2.2.5 (Bootstrap 2.3.1)</li>
-
+  <li><strong>July 29 2013</strong>  
+    <ul>
+      <li>Forked from diowa/twitter-bootstrap-rails</li>
+      <li>Updated menu_helpers to Bootstrap 3.0 RC1 standards</li>
+      <li>Merged bootstrap-3.0.0 into master</li>
+    </ul>
+  </li>
 </ul>
-
 
 ## Contributors & Patches & Forks
-<ul>
-  <li>Ben Lovell</li>
-  <li>Daniel Morris</li>
-  <li>Bradly Feeley</li>
-  <li>Guilherme Moreira</li>
-  <li>Alex Behar</li>
-  <li>Brandon Keene</li>
-  <li>Anthony Corcutt</li>
-  <li>Colin Warren</li>
-  <li>Giovanni Cappellotto</li>
-  <li>Masakuni Kato</li>
-  <li>Gudleik Rasch</li>
-  <li>Thomas Volkmar Worm</li>
-  <li>Thiago Almeida</li>
-  <li>Sébastien Grosjean</li>
-  <li>Nick DeSteffen</li>
-  <li>Christian Joudrey</li>
-  <li>Todd Baur</li>
-  <li>Leonid Shevtsov</li>
-</ul>
-
-## About Me
-Lead/ Senior Developer - Programmer @useful (Usefulideas) Istanbul / Turkey
+*All those listed at http://github.com/seyhunak/twitter-bootstrap-rails*
 
 ### Contact me
-Seyhun Akyürek - seyhunak [at] gmail com
-
-### Follow me
-<a href="http://zerply.com/seyhunak">
-<img width="110" height="40" src="http://zerply.com/img/welcomesteps/zerply_logo.png" />
-</a>
-
-(Twitter, Facebook, Linkedin, Google+, Github)
-
-http://zerply.com/seyhunak
-
-### Endorse me
-<a href="http://coderwall.com/seyhunak">
-<img src="http://api.coderwall.com/seyhunak/endorsecount.png" />
-</a>
-
-### Klout me
-<img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
-
-Please +K my influence in Ruby on Rails on @klout
-
-http://klout.com/#/seyhunak
-
-
-### Want to donate?
-<img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
-
-[Want to donate for my efforts? Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
- "Donate")
-
+Terrence Katzenbaer - me [at] katzenbaer net
 
 ## Thanks
-Twitter Bootstrap and all twitter-bootstrap-rails contributors
+@seyhunak for the original twitter-bootstrap-rails and all its contributors.  
+@diowa for starting the Bootstrap 3 migration which this fork is based on.  
+
+Twitter Bootstrap (http://getbootstrap.com/)
 http://twitter.github.com/bootstrap
 
-
 ## License
+
+Copyright (c) 2013 Terrence Katzenbaer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+###Original License
 Copyright (c) 2012 Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
