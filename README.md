@@ -544,7 +544,7 @@ Terrence Katzenbaer - me [at] katzenbaer net
 
 ## Thanks
 @seyhunak for the original twitter-bootstrap-rails and all its contributors.  
-@diowa for starting the Bootstrap 3 migration which this fork is based on.  
+@diowa for starting the Bootstrap 3 migration which this fork is based upon.  
 
 Twitter Bootstrap (http://getbootstrap.com/)
 http://twitter.github.com/bootstrap
