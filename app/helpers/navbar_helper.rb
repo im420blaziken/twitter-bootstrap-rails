@@ -166,7 +166,7 @@ module NavbarHelper
   end
 
   def dropdown_list(&block)
-    content_tag :ul, {class: "dropdown-menu", role: "menu"}, &block
+    content_tag :ul, class: "dropdown-menu", &block
   end
 end
 
