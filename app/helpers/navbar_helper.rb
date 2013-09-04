@@ -98,7 +98,7 @@ module NavbarHelper
     position = "fixed-#{options[:fixed].to_s}" if options[:fixed]
     inverse = (options[:inverse].present? && options[:inverse] == true) ? true : false
 
-    content_tag :div, :class => nav_bar_css_class(position, inverse) do
+    content_tag :div, :class => nav_bar_css_class(position, inverse), :id => options[:id] do
       yield
     end
   end
