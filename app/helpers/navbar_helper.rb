@@ -129,7 +129,7 @@ module NavbarHelper
   end
 
   def nav_bar_css_class(position, inverse = false)
-    css_class = ["navbar navbar-defualt"]
+    css_class = ["navbar navbar-default"]
     css_class << "navbar-#{position}" if position.present?
     css_class << "navbar-inverse" if inverse
     css_class.join(" ")
