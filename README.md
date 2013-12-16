@@ -1,6 +1,6 @@
 #### This is a fork of github.com/syhunak/twitter-bootstrap-rails
 
-# Twitter Bootstrap 3.03 for Rails 4 Asset Pipeline
+# Twitter Bootstrap 3.03 for Rails 4
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 4 Asset Pipeline (Rails 3.1 and Rails 3.2 supported)
@@ -518,6 +518,16 @@ for handling flash messages, even if those messages are blank. See https://githu
 
 ## Changelog
 <ul>
+  <li><strong>December 12 2013</strong>  
+    <ul>
+      <li>Updated bootstrap-3.0.0 branch to Bootstrap 3.0.3</li>
+    </ul>
+  </li>
+  <li><strong>August 17 2013</strong>  
+    <ul>
+      <li>Updated bootstrap-3.0.0 branch to Bootstrap 3.0 RC2</li>
+    </ul>
+  </li>
   <li><strong>July 29 2013</strong>  
     <ul>
       <li>Forked from diowa/twitter-bootstrap-rails</li>
