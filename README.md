@@ -1,6 +1,6 @@
 #### This is a fork of github.com/syhunak/twitter-bootstrap-rails
 
-# Twitter Bootstrap 3 for Rails 4 Asset Pipeline
+# Twitter Bootstrap 3.03 for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 4 Asset Pipeline (Rails 3.1 and Rails 3.2 supported)
@@ -25,13 +25,13 @@ Modify these lines in the Gemfile to install the gems from [RubyGems.org](http:/
 # gem 'sass-rails'
 gem 'therubyracer' # Add this if missing
 gem 'less-rails' # Add this - Sprockets (what Rails 4 uses for its asset pipeline) supports LESS
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git' # Add this
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/im420blaziken/twitter-bootstrap-rails.git' # Add this
 ```
 
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/katzenbaer/twitter-bootstrap-rails.git', :branch => 'bootstrap-3.0.0'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/im420blaziken/twitter-bootstrap-rails.git', :branch => 'bootstrap-3.0.0'
 ```
 
 Then run `bundle install` from the command line:
@@ -151,16 +151,7 @@ styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrid
 
 ### Icons
 
-By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesome (http://fortawesome.github.com/Font-Awesome/).
-If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
-
-```css
-/* Font Awesome (default - comment to disable) */
-//@import "fontawesome/font-awesome";
-
-/* Glyphicons */
-@import "twbs/bootstrap-glyphicons/bootstrap-glyphicons";
-```
+Unlike the original gem, this fork uses Glyphicons as the default icon set and does not support FontAwesome.
 
 ## Using Javascripts
 
@@ -540,7 +531,7 @@ for handling flash messages, even if those messages are blank. See https://githu
 *All those listed at http://github.com/seyhunak/twitter-bootstrap-rails*
 
 ### Contact me
-Terrence Katzenbaer - me [at] katzenbaer net
+Ash K - im420blaziken [at] gmail com
 
 ## Thanks
 @seyhunak for the original twitter-bootstrap-rails and all its contributors.  
@@ -551,7 +542,7 @@ http://twitter.github.com/bootstrap
 
 ## License
 
-Copyright (c) 2013 Terrence Katzenbaer
+Copyright (c) 2013 Ash K (im420blaziken)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
